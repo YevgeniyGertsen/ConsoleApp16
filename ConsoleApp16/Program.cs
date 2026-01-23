@@ -13,7 +13,7 @@ namespace ConsoleApp16
         static void Main(string[] args)
         {
 
-            OleDbCon();
+            SqlCon();
         }
 
         public static void OleDbCon()
@@ -25,6 +25,14 @@ namespace ConsoleApp16
                 Console.WriteLine("Connection open!");
             }
         }
+
+        //public void OdbcCon()
+        //{
+        //    using (Odbc)
+        //    {
+
+        //    }
+        //}
 
         public static void SqlCon()
         {
@@ -43,6 +51,18 @@ namespace ConsoleApp16
                 Console.WriteLine("State: {0}", coonection.State);
                 Console.WriteLine("WorkstationId: {0}", coonection.WorkstationId);
                 Console.WriteLine("DataSource: {0}", coonection.DataSource);
+
+                string sql = "SELECT * FROM Positions";
+                SqlCommand command = new SqlCommand(sql, coonection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["Id"]);
+                    string name = reader["Name"].ToString();
+
+                    Console.WriteLine($"{id} - {name}");
+                }
             }
             catch (SqlException ex)
             {
