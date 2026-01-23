@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,23 @@ namespace ConsoleApp16
         static void Main(string[] args)
         {
 
+            OleDbCon();
+        }
+
+        public static void OleDbCon()
+        {
+            string connectionStrins = "Provider=MSOLEDBSQL;Server=178.89.186.221,1434;Database=hotelatr_db;UID=hotelatr_user_db;PWD=A1d8kn&66;";
+            using (OleDbConnection connection = new OleDbConnection(connectionStrins))
+            {
+                connection.Open();
+                Console.WriteLine("Connection open!");
+            }
+        }
+
+        public static void SqlCon()
+        {
             string connectionString = "Server=178.89.186.221, 1434;Database=hotelatr_db;User Id=hotelatr_user_db;Password=A1d8kn&66;TrustServerCertificate=True;";
+
             SqlConnection coonection = new SqlConnection(connectionString);
 
             try
@@ -32,7 +49,7 @@ namespace ConsoleApp16
                 Console.WriteLine("An error occurred while connecting: " +
                     ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " +
                    ex.Message);
