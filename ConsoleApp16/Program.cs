@@ -20,6 +20,12 @@ namespace ConsoleApp16
                 coonection.Open();
                 Console.WriteLine("Connection open!");
 
+                Console.WriteLine("ConnectionString: {0}", coonection.ConnectionString);
+                Console.WriteLine("Database: {0}", coonection.Database);
+                Console.WriteLine("ServerVersion: {0}", coonection.ServerVersion);
+                Console.WriteLine("State: {0}", coonection.State);
+                Console.WriteLine("WorkstationId: {0}", coonection.WorkstationId);
+                Console.WriteLine("DataSource: {0}", coonection.DataSource);
             }
             catch (SqlException ex)
             {
